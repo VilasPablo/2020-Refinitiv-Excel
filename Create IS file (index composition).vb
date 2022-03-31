@@ -25,7 +25,7 @@ Dim filas As Long
 Dim ruta
 Dim rng As Range
 Dim filas2 As Long
-Dim indicador As Long 'Columna1 para pasar rápido de mes en mes
+Dim indicador As Long 'Columna1 para pasar rÃ¡pido de mes en mes
 
    contador1 = 1
    datos_analizados = 0
@@ -37,9 +37,9 @@ Dim indicador As Long 'Columna1 para pasar rápido de mes en mes
     For tt = datos_analizados To tota1 - 1
     ref1 = Cells(datos_analizados + 6 + 1, 5)
     anchura = Len(ref1)
-    extraccion1 = Mid(ref1, 1, anchura - 4) 'Nombre del índice
+    extraccion1 = Mid(ref1, 1, anchura - 4) 'Nombre del Ã­ndice
     filas2 = 0
-    ' datos mensuales del índice, hubiera sido más eficiente usar la función contar
+    ' datos mensuales del Ã­ndice, hubiera sido mÃ¡s eficiente usar la funciÃ³n contar
         Do Until contador1 > tota1
         ref1 = Cells(contador1 + 6, 5)
         anchura = Len(ref1)
@@ -51,16 +51,16 @@ Dim indicador As Long 'Columna1 para pasar rápido de mes en mes
         contador1 = contador1 + 1
         Loop
         contador1 = 1 'reiniciamos contador
-    'Crear un excel con el nombre del índice
+    'Crear un excel con el nombre del Ã­ndice
     ref1 = Cells(datos_analizados + 6 + 1, 5)
     anchura = Len(ref1)
-    extraccion1 = Mid(ref1, 1, anchura - 4) 'ticker del índice
+    extraccion1 = Mid(ref1, 1, anchura - 4) 'ticker del Ã­ndice
     Workbooks.Add
     ActiveWorkbook.SaveAs Filename:=ruta & "\" & extraccion1
     Sheets("Hoja1").Name = extraccion1
     ThisWorkbook.Activate
         
-    'Ir hoja por hoja extrayendo los datos del índice
+    'Ir hoja por hoja extrayendo los datos del Ã­ndice
     For i = datos_analizados To index_month - 1
     ref1 = Cells(datos_analizados + 6 + 1, 5)
     anchura = Len(ref1)
@@ -76,13 +76,13 @@ Dim indicador As Long 'Columna1 para pasar rápido de mes en mes
     extraccion2 = 20 & extraccion2
     fecha_numerica = extraccion2 & extraccion1
     End If
-    'Número de hoja donde se encuentran los datos
+    'NÃºmero de hoja donde se encuentran los datos
     ref1 = Cells(datos_analizados + 6 + 1, 11)
     anchura = Len(ref1)
     extraccion1 = Mid(ref1, 3, anchura - 8)
     hoja = extraccion1
     datos_analizados = datos_analizados + 1
-    'Copiar los datos de la descarga mensual. Filas = Datos de la descarga mensual. Filas2= Número de datos pasado al nueveo Excel
+    'Copiar los datos de la descarga mensual. Filas = Datos de la descarga mensual. Filas2= NÃºmero de datos pasado al nueveo Excel
     filas = Sheets("" & hoja & "").Range("A1").CurrentRegion.Rows.Count - 1
     columnas = Sheets("" & hoja & "").Range("A1").CurrentRegion.Columns.Count
     colum_letra = Mid(Split(Columns(columnas).Address, ":")(1), 2)
@@ -116,11 +116,11 @@ Dim indicador As Long 'Columna1 para pasar rápido de mes en mes
     & index_name & "").Cells(2 + filas2, columnas + 3), _
     Workbooks("" & index_name & "").Worksheets("" & index_name & "").Cells(filas2 + filas + 1, columnas + 3)).Value = hoja ' En que hoja estan los datos.
  
-    filas2 = filas2 + filas 'Contador para pegar los datos en forma de listado uno detrás de otro.
+    filas2 = filas2 + filas 'Contador para pegar los datos en forma de listado uno detrÃ¡s de otro.
     indicador = indicador + 1
     
     Next
-    'Pegar títulos de los datos descargados
+    'Pegar tÃ­tulos de los datos descargados
     Worksheets("" & hoja & "").Range(Worksheets("" & hoja & "").Cells(1, 1), _
     Worksheets("" & hoja & "").Cells(1, columnas)).Copy
     Set rng = Workbooks("" & index_name & "").Sheets("" & index_name & "").Range(Workbooks("" & index_name & "").Worksheets("" _
@@ -128,7 +128,7 @@ Dim indicador As Long 'Columna1 para pasar rápido de mes en mes
     Workbooks("" & index_name & "").Worksheets("" & index_name & "").Cells(1, columnas + 1))
     ActiveSheet.Paste Destination:=rng
     Workbooks("" & index_name & "").Worksheets("" & index_name & "").Cells(1, columnas + 2).value = "Fecha Numerica"
-    Workbooks("" & index_name & "").Worksheets("" & index_name & "").Cells(1, columnas + 3).value = "Ubicación"
+    Workbooks("" & index_name & "").Worksheets("" & index_name & "").Cells(1, columnas + 3).value = "UbicaciÃ³n"
     Workbooks("" & index_name & "").Worksheets("" & index_name & "").Cells(1, 1).Value = "Sig. Mes"
 
     'Eliminar NA que se encuentran en las primeras celdas
